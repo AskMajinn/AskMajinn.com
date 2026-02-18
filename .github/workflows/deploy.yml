@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: build-and-deploy
 
 on:
   push:
@@ -11,7 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
       - name: Install dependencies
         run: npm ci
@@ -19,12 +24,16 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          test -d dist
+          test -f dist/index.html
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 21
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
           server-dir: public_html/askmajinn.com/
