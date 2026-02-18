@@ -1,8 +1,9 @@
-name: build-and-deploy
+name: Build and Deploy (Astro -> cPanel)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -15,27 +16,32 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: npm
+          node-version: "20"
+          cache: "npm"
 
-      - name: Install deps
+      - name: Install
         run: npm ci
 
-      - name: Build
+      - name: Build (Astro)
         run: npm run build
 
       - name: Verify build output
         run: |
+          test -d dist
           test -f dist/index.html
-          ls -la dist
 
-      - name: Deploy to cPanel via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy dist to server (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 21
+          port: ${{ secrets.SFTP_PORT }}
           protocol: ftps
           local-dir: dist/
           server-dir: ${{ secrets.SFTP_REMOTE_PATH }}
+          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
