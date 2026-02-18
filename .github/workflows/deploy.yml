@@ -1,61 +1,30 @@
-name: Deploy to cPanel
+name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build Astro site
-      run: npm run build
-    
-    - name: Verify build output
-      run: |
-        echo "Build output verification:"
-        ls -la dist | head -20
-        echo ""
-        echo "Checking for index.html in dist:"
-        if [ -f dist/index.html ]; then
-          echo "✅ index.html found in dist/"
-        else
-          echo "❌ index.html NOT found in dist/"
-          exit 1
-        fi
-    
-    - name: Deploy to cPanel via SFTP
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        username: ${{ secrets.SFTP_USERNAME }}
-        server: ${{ secrets.SFTP_SERVER }}
-        port: ${{ secrets.SFTP_PORT }}
-        password: ${{ secrets.SFTP_PASSWORD }}
-        local_path: './dist/*'
-        remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
-        args: '-o ConnectTimeout=5'
-    
-    - name: Create deployment test file
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        username: ${{ secrets.SFTP_USERNAME }}
-        server: ${{ secrets.SFTP_SERVER }}
-        port: ${{ secrets.SFTP_PORT }}
-        password: ${{ secrets.SFTP_PASSWORD }}
-        local_path: './deploy-test.txt'
-        remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
-        args: '-o ConnectTimeout=5'
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 21
+          local-dir: dist/
+          server-dir: public_html/askmajinn.com/
