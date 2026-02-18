@@ -1,0 +1,10 @@
+<!-- Video Placeholder -->
+<!-- Replace this entire file with your actual .mp4 video file -->
+<!-- Keep the filename as: videos-category.mp4 -->
+<!-- Recommended specs: -->
+<!-- - Resolution: 1920x1080 (16:9 aspect ratio) -->
+<!-- - Duration: 30-60 seconds -->
+<!-- - Format: MP4 (H.264 codec) -->
+<!-- - Size: Under 50MB for web optimization -->
+
+This is a placeholder file. Replace with videos-category.mp4

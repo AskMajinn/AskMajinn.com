@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const socialMedia = [
+  {
+    name: "Instagram",
+    username: "@askmajinn",
+    url: "https://instagram.com/askmajinn",
+    icon: "📱",
+    description: "Daily creative inspiration and behind-the-scenes content",
+    color: "from-pink-500 to-purple-600",
+    stats: "10M+ followers"
+  },
+  {
+    name: "YouTube",
+    username: "AskMajinn",
+    url: "https://youtube.com/@askmajinn",
+    icon: "🎥",
+    description: "In-depth tutorials, design processes, and AI workflows",
+    color: "from-red-500 to-red-700",
+    stats: "150K+ subscribers"
+  },
+  {
+    name: "TikTok",
+    username: "@askmajinn",
+    url: "https://tiktok.com/@askmajinn",
+    icon: "🎵",
+    description: "Quick design tips and creative challenges",
+    color: "from-black to-gray-800",
+    stats: "25M+ followers"
+  }
+];
+
+const newsletters = [
+  {
+    name: "Creative AI Weekly",
+    description: "Weekly insights on AI tools for creatives",
+    url: "https://newsletter.askmajinn.com",
+    frequency: "Weekly",
+    subscribers: "598K+"
+  },
+  {
+    name: "Design Trends Monthly",
+    description: "Monthly roundup of design trends and insights",
+    url: "https://trends.askmajinn.com",
+    frequency: "Monthly", 
+    subscribers: "300K+"
+  }
+];
+---
+
+<Layout 
+  title="Connect — AskMajinn"
+  description="Connect with Majinn across all platforms. Follow for daily creative inspiration, AI insights, design tutorials, and join the creative community."
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom text-center">
+      <h1 class="heading-1 mb-6">
+        Let's <span class="text-gradient">Connect</span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-8">
+        Join me across all platforms for daily creative inspiration, AI insights, 
+        design tutorials, and be part of a thriving creative community.
+      </p>
+      
+      <!-- Quick Stats -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <div>
+          <div class="text-2xl font-bold text-cyan-400">50K+</div>
+          <div class="text-sm text-slate-400">Total Followers</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-pink-400">1M+</div>
+          <div class="text-sm text-slate-400">Monthly Reach</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-cyan-400">Daily</div>
+          <div class="text-sm text-slate-400">Content Creation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Platforms -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">Social Platforms</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          Follow along for different types of content across various platforms
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {socialMedia.map((platform) => (
+          <a 
+            href={platform.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card card-hover-cyan group block"
+          >
+            <!-- Platform Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl group-hover:scale-110 transition-transform duration-200">
+                {platform.icon}
+              </div>
+              <span class="text-xs px-2 py-1 rounded-full bg-cyan-400/20 text-cyan-400 border border-cyan-400/30">
+                {platform.stats}
+              </span>
+            </div>
+            
+            <!-- Platform Info -->
+            <div class="space-y-3">
+              <div>
+                <h3 class="text-lg font-semibold group-hover:text-cyan-400 transition-colors">
+                  {platform.name}
+                </h3>
+                <p class="text-sm text-slate-400">{platform.username}</p>
+              </div>
+              
+              <p class="text-slate-400 text-sm leading-relaxed">
+                {platform.description}
+              </p>
+            </div>
+            
+            <!-- Follow Button -->
+            <div class="mt-6 pt-4 border-t border-slate-700">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-slate-400">Follow for updates</span>
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletters -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">Stay Updated</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          Subscribe to our newsletters for curated insights and exclusive content
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {newsletters.map((newsletter) => (
+          <div class="card card-hover-cyan">
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-2">{newsletter.name}</h3>
+                <p class="text-slate-400">{newsletter.description}</p>
+              </div>
+              
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-400">{newsletter.frequency}</span>
+                <span class="text-cyan-400">{newsletter.subscribers} subscribers</span>
+              </div>
+              
+              <a 
+                href="mailto:AskMajinn@gmail.com?subject=Newsletter%20Subscription%20-%20Creative%20AI%20Weekly&body=Hi%20Majinn%2C%0A%0AI%27d%20like%20to%20subscribe%20to%20the%20Creative%20AI%20Weekly%20newsletter.%0A%0AEmail%3A%20%5BYour%20email%20here%5D%0A%0AThanks%21"
+                class="btn btn-primary w-full"
+              >
+                📧 Subscribe via Email
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Direct Contact -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-2 mb-6">Get in Touch Directly</h2>
+        <p class="text-xl text-slate-400 mb-8">
+          For collaborations, business inquiries, or just to say hello
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Email -->
+          <a 
+            href="mailto:AskMajinn@gmail.com" 
+            class="card card-hover-cyan group text-center"
+          >
+            <div class="text-3xl mb-4 group-hover:scale-110 transition-transform duration-200">📧</div>
+            <h3 class="font-semibold mb-2 group-hover:text-cyan-400 transition-colors">Email</h3>
+            <p class="text-slate-400 text-sm">AskMajinn@gmail.com</p>
+          </a>
+          
+          <!-- Schedule Call -->
+          <a 
+            href="mailto:AskMajinn@gmail.com?subject=Schedule%20Call%20Request&body=Hi%20Majinn%2C%0A%0AI%27d%20like%20to%20schedule%20a%20call%20with%20you.%20Here%20are%20my%20details%3A%0A%0A%2A%2ACONTACT%20INFORMATION%2A%2A%0AName%3A%20%0AEmail%3A%20%0APhone%20%28optional%29%3A%20%0ATime%20Zone%3A%20%0A%0A%2A%2ACALL%20DETAILS%2A%2A%0APreferred%20Date%3A%20%0APreferred%20Time%3A%20%0ACall%20Duration%20Needed%3A%20%5B30%20min%20%2F%2060%20min%5D%0A%0A%2A%2APURPOSE%20OF%20CALL%2A%2A%0AWhat%20would%20you%20like%20to%20discuss%3A%20%0A%5BProject%20consultation%20%2F%20Design%20advice%20%2F%20AI%20tools%20guidance%20%2F%20Business%20collaboration%20%2F%20Other%5D%0A%0AAdditional%20Details%3A%20%0A%5BPlease%20provide%20any%20additional%20context%20about%20what%20you%27d%20like%20to%20discuss...%5D%0A%0AI%20will%20reach%20back%20out%20to%20you%20to%20confirm%20the%20call%20details.%0A%0AThanks%21"
+            class="card card-hover-cyan group text-center"
+          >
+            <div class="text-3xl mb-4 group-hover:scale-110 transition-transform duration-200">📅</div>
+            <h3 class="font-semibold mb-2 group-hover:text-cyan-400 transition-colors">Schedule Call</h3>
+            <p class="text-slate-400 text-sm">Request a consultation via email</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="card card-hover-cyan text-center max-w-4xl mx-auto bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-400/30">
+        <div class="text-4xl mb-4">🚧</div>
+        <h2 class="heading-2 mb-6">Community Features</h2>
+        <h3 class="text-xl font-bold text-orange-400 mb-4">COMING SOON</h3>
+        <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+          We're building an amazing creative community space! This will include forums, 
+          collaboration tools, feedback systems, and ways to connect with fellow creators. 
+          Stay tuned for updates.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+

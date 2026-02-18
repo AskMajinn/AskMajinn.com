@@ -1,0 +1,6 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1a1a1a" stroke="#ff8c00" stroke-width="2"/>
+  <text x="200" y="120" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ff8c00" text-anchor="middle">WEBSITES CREATED</text>
+  <text x="200" y="160" font-family="Arial, sans-serif" font-size="16" fill="#ff8c00" text-anchor="middle">Category Header Image</text>
+  <text x="200" y="200" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">Replace: websites-category.svg</text>
+</svg>

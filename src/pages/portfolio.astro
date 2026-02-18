@@ -1,0 +1,318 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const portfolioItems = [
+  {
+    id: 1,
+    title: "AI Generated Artwork Collection",
+    category: "AI Created Images",
+    image: "/portfolio/ai-images-category.svg",
+    result: "Unique artistic visions brought to life",
+    description: "Professional AI-generated artwork for brands, social media, and creative projects using cutting-edge AI tools.",
+    tags: ["Midjourney", "DALL-E", "Stable Diffusion", "Art Direction"],
+    link: "/portfolio/ai-images",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Modern Business Website",
+    category: "Websites Created",
+    image: "/portfolio/websites-category.svg", 
+    result: "Lightning-fast, conversion-focused design",
+    description: "Responsive websites built with modern technologies, optimized for performance and user experience.",
+    tags: ["Astro", "React", "Tailwind", "Performance"],
+    link: "/portfolio/websites",
+    featured: true
+  },
+  {
+    id: 3,
+    title: "Social Media Video Content",
+    category: "Videos Created",
+    image: "/portfolio/videos-category.svg",
+    video: "/portfolio/videos-category.mp4",
+    type: "video",
+    result: "Engaging content that drives views",
+    description: "Professional video content for social media, marketing campaigns, and brand storytelling.",
+    tags: ["Video Editing", "Motion Graphics", "Social Media", "Branding"],
+    link: "/portfolio/videos",
+    featured: true
+  },
+  {
+    id: 4,
+    title: "South Park Style Animation",
+    category: "Way Down South Park",
+    image: "/portfolio/wdsp-category.svg",
+    result: "Viral meme content with unique style",
+    description: "Custom South Park style animations turning trending topics and memes into entertaining content for Facebook.",
+    tags: ["Animation", "South Park Style", "Memes", "Social Content"],
+    link: "/portfolio/way-down-south-park",
+    featured: true
+  },
+  {
+    id: 5,
+    title: "Event Flyer Designs",
+    category: "Flyers Created",
+    image: "/portfolio/flyers-category.svg",
+    result: "Eye-catching designs that get noticed",
+    description: "Professional flyer designs for events, promotions, and business marketing with strong visual impact.",
+    tags: ["Graphic Design", "Marketing", "Print Design", "Branding"],
+    link: "/portfolio/flyers",
+    featured: false
+  }
+];
+
+const categories = ["All", "AI Created Images", "Websites Created", "Videos Created", "Way Down South Park", "Flyers Created"];
+---
+
+<Layout 
+  title="Portfolio — AskMajinn"
+  description="Explore creative projects spanning design, web development, AI content, and social campaigns. See how creativity meets technology."
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom text-center">
+      <h1 class="heading-1 mb-6">Creative Portfolio</h1>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Explore projects where creativity meets technology. From brand identities to 
+        lightning-fast web applications, discover how innovative solutions drive real results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="py-8 sticky top-20 z-30 glass border-b border-white/10">
+    <div class="container-custom">
+      <div class="flex flex-wrap justify-center gap-4">
+        {categories.map((category) => (
+          <button 
+            class="filter-btn px-6 py-3 rounded-xl font-medium transition-all duration-200 focus-ring"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+        {portfolioItems.map((item) => (
+          <article 
+            class="portfolio-item card card-hover-cyan group"
+            data-category={item.category}
+            data-featured={item.featured}
+          >
+            <!-- Image/Video -->
+            <div class="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg mb-6 overflow-hidden border border-orange-500/20 relative">
+              {item.type === "video" ? (
+                <div class="relative w-full h-full">
+                  <video 
+                    class="w-full h-full object-cover"
+                    controls
+                    preload="metadata"
+                    poster={item.image}
+                  >
+                    <source src={item.video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                    🎥 Video
+                  </div>
+                </div>
+              ) : (
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            
+            <!-- Content -->
+            <div class="space-y-4">
+              <!-- Category & Featured Badge -->
+              <div class="flex items-center justify-between">
+                <span class="text-sm px-3 py-1 rounded-full bg-cyan-400/20 text-cyan-400 border border-cyan-400/30">
+                  {item.category}
+                </span>
+                {item.featured && (
+                  <span class="text-sm px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30">
+                    Featured
+                  </span>
+                )}
+              </div>
+              
+              <!-- Title -->
+              <h3 class="text-xl font-semibold group-hover:text-cyan-400 transition-colors">
+                {item.title}
+              </h3>
+              
+              <!-- Result -->
+              <p class="text-sm font-medium text-pink-400">
+                {item.result}
+              </p>
+              
+              <!-- Description -->
+              <p class="text-slate-400 leading-relaxed">
+                {item.description}
+              </p>
+              
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span class="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <!-- Link -->
+              <div class="pt-2">
+                <a 
+                  href={item.link}
+                  class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium group/link"
+                >
+                  View Project
+                  <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <div class="text-6xl mb-4 opacity-50">🔍</div>
+        <h3 class="text-xl font-semibold mb-2">No projects found</h3>
+        <p class="text-slate-400">Try adjusting your filter selection</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">Project Impact</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          Real results from creative solutions and technical excellence
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">50+</div>
+          <p class="text-slate-400">Projects Completed</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">95%</div>
+          <p class="text-slate-400">Client Satisfaction</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">2M+</div>
+          <p class="text-slate-400">Users Reached</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">24/7</div>
+          <p class="text-slate-400">Creative Mindset</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="card card-hover-cyan text-center max-w-3xl mx-auto bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border-cyan-400/30">
+        <h2 class="heading-2 mb-6">Ready to Start Your Project?</h2>
+        <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          Let's create something amazing together. From concept to launch, 
+          I'll help bring your vision to life with creativity and technical excellence.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn btn-primary text-lg px-8 py-4">
+            Start a Project
+          </a>
+          <a href="/about" class="btn btn-secondary text-lg px-8 py-4">
+            Learn More About Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+  }
+  
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.3);
+    color: #00e5ff;
+  }
+  
+  .portfolio-item {
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-item.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const emptyState = document.getElementById('empty-state');
+    
+    // Set initial active filter
+    const allBtn = document.querySelector('[data-category="All"]');
+    if (allBtn) allBtn.classList.add('active');
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter items
+        let visibleCount = 0;
+        portfolioItems.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          const shouldShow = category === 'All' || itemCategory === category;
+          
+          if (shouldShow) {
+            item.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+        
+        // Show/hide empty state
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+</script>

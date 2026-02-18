@@ -1,0 +1,12 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1a1a1a" stroke="#ff8c00" stroke-width="2"/>
+  <text x="300" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ff8c00" text-anchor="middle">Brand Voice Example</text>
+  <text x="300" y="120" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9966ff" text-anchor="middle">🎯 Tech Brand Voice Guide</text>
+  <text x="300" y="150" font-family="Arial, sans-serif" font-size="12" fill="#ccc" text-anchor="middle">Personality: Friendly tech expert friend</text>
+  <text x="300" y="170" font-family="Arial, sans-serif" font-size="12" fill="#ccc" text-anchor="middle">Tone: Approachable yet authoritative</text>
+  <text x="300" y="200" font-family="Arial, sans-serif" font-size="11" fill="#00ff88" text-anchor="middle">✓ Use: "Let's explore" "Here's how" "Simple steps"</text>
+  <text x="300" y="220" font-family="Arial, sans-serif" font-size="11" fill="#ff6666" text-anchor="middle">✗ Avoid: "Revolutionary" "Game-changer" Jargon</text>
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="11" fill="#ccc" text-anchor="middle">Example: "Here's a simple way to boost your workflow</text>
+  <text x="300" y="270" font-family="Arial, sans-serif" font-size="11" fill="#ccc" text-anchor="middle">without the tech headaches."</text>
+  <text x="300" y="320" font-family="Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">Replace: brand-voice-example.svg</text>
+</svg>

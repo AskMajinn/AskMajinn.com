@@ -1,0 +1,574 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const prompts = [
+  {
+    id: 1,
+    title: "Instagram Story Creator",
+    description: "Generate engaging Instagram stories with trending hashtags and compelling call-to-actions",
+    category: "Social Media",
+    example: "Create an Instagram story about sustainable fashion tips with 3 engaging slides, trending hashtags, and a clear CTA to visit your eco-friendly online store.",
+    prompt: "You are an expert social media content creator specializing in Instagram stories. Create [number] engaging Instagram story slides about [topic]. Include: 1) Eye-catching headlines 2) Relevant trending hashtags 3) Clear call-to-action 4) Engaging visual descriptions 5) Story-specific features (polls, questions, etc.)",
+    tags: ["Instagram", "Social Media", "Marketing", "Engagement"],
+    featured: true,
+    likes: 234,
+    uses: 1542,
+    exampleImage: "/prompt-examples/instagram-story-example.svg"
+  },
+  {
+    id: 2,
+    title: "Product Description Wizard",
+    description: "Write compelling product descriptions that convert browsers into buyers",
+    category: "Marketing",
+    example: "Wireless noise-cancelling headphones that immerse you in pure sound while blocking out distractions. Perfect for work, travel, and relaxation.",
+    prompt: "You are an expert e-commerce copywriter. Write a compelling product description for [product]. Include: 1) Attention-grabbing headline 2) Key benefits (not just features) 3) Emotional triggers 4) Social proof elements 5) Clear value proposition 6) Urgency/scarcity if appropriate. Keep it concise but persuasive.",
+    tags: ["E-commerce", "Copywriting", "Sales", "Conversion"],
+    featured: true,
+    likes: 189,
+    uses: 987,
+    exampleImage: "/prompt-examples/product-description-example.svg"
+  },
+  {
+    id: 3,
+    title: "Character Art Generator", 
+    description: "Design unique character concepts with detailed visual descriptions for artists",
+    category: "Art",
+    example: "A cyberpunk detective with neon blue hair, augmented reality glasses, and a leather trench coat covered in holographic patches.",
+    prompt: "You are a professional character designer. Create a detailed character concept for [character type] in [style/genre]. Include: 1) Physical appearance details 2) Clothing and accessories 3) Personality traits reflected in design 4) Color palette suggestions 5) Pose and expression 6) Background/environment context. Make it vivid and specific for artists to visualize.",
+    tags: ["Character Design", "Art", "Creativity", "Visual"],
+    featured: false,
+    likes: 156,
+    uses: 743,
+    exampleImage: "/prompt-examples/character-art-example.svg"
+  },
+  {
+    id: 4,
+    title: "Email Marketing Mastery",
+    description: "Craft high-converting email campaigns that drive engagement and sales",
+    category: "Marketing",
+    example: "Subject: Your cart is calling... (don't let these deals escape!) - A friendly reminder email that feels personal, not pushy.",
+    prompt: "You are an email marketing expert. Create an email campaign for [purpose/goal]. Include: 1) Compelling subject line 2) Personalized greeting 3) Clear value proposition 4) Engaging body content 5) Strong call-to-action 6) Mobile-friendly format 7) A/B testing suggestions. Tone should be [specify tone].",
+    tags: ["Email Marketing", "Conversion", "Automation", "Sales"],
+    featured: false,
+    likes: 198,
+    uses: 654,
+    exampleImage: "/prompt-examples/email-marketing-example.svg"
+  },
+  {
+    id: 5,
+    title: "Video Script Creator",
+    description: "Write engaging video scripts for YouTube, TikTok, and social media content",
+    category: "Video",
+    example: "Hook: 'I tried the 5AM club for 30 days, and here's what actually happened...' followed by structured content with retention hooks.",
+    prompt: "You are a viral video content creator. Write a script for a [duration] video about [topic] for [platform]. Include: 1) Strong hook (first 3 seconds) 2) Retention hooks throughout 3) Clear structure with timestamps 4) Engaging transitions 5) Call-to-action 6) Platform-specific optimizations. Keep viewers engaged from start to finish.",
+    tags: ["Video", "Content Creation", "YouTube", "TikTok"],
+    featured: true,
+    likes: 267,
+    uses: 1123,
+    exampleImage: "/prompt-examples/video-script-example.svg"
+  },
+  {
+    id: 6,
+    title: "Brand Voice Developer",
+    description: "Define and develop a consistent brand voice and messaging strategy",
+    category: "Writing",
+    example: "A friendly, knowledgeable tech brand that speaks like a helpful friend who happens to be a tech expert - approachable but authoritative.",
+    prompt: "You are a brand strategist. Develop a comprehensive brand voice guide for [brand/company]. Include: 1) Brand personality traits 2) Tone of voice examples 3) Words to use/avoid 4) Communication style 5) Audience-specific adaptations 6) Sample messaging 7) Do's and don'ts. Make it practical and actionable.",
+    tags: ["Branding", "Strategy", "Communication", "Guidelines"],
+    featured: false,
+    likes: 145,
+    uses: 432,
+    exampleImage: "/prompt-examples/brand-voice-example.svg"
+  }
+];
+
+const categories = ["All", "Art", "Writing", "Marketing", "Video", "Social Media"];
+---
+
+<Layout 
+  title="Prompt Forum — AskMajinn"
+  description="Discover powerful AI prompts for creativity and productivity. Browse, search, and request custom prompts for your projects."
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom text-center">
+      <h1 class="heading-1 mb-6">
+        <span class="text-gradient">Prompt Forum</span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-8">
+        Discover powerful AI prompts that supercharge your creativity and productivity. 
+        Browse our curated collection or request custom prompts for your specific needs.
+      </p>
+      
+      <!-- Featured Stats -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center text-center">
+        <div>
+          <div class="text-2xl font-bold text-cyan-400">500+</div>
+          <div class="text-sm text-slate-400">Prompts Available</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-pink-400">50K+</div>
+          <div class="text-sm text-slate-400">Times Used</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-cyan-400">15+</div>
+          <div class="text-sm text-slate-400">Categories</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search and Filters -->
+  <section class="py-8 sticky top-20 z-30 glass border-b border-white/10">
+    <div class="container-custom">
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto mb-6">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="search-input"
+            placeholder="Search prompts..." 
+            class="form-input w-full pl-12 pr-4 py-4 text-lg"
+          />
+          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-4">
+        {categories.map((category) => (
+          <button 
+            class="filter-btn px-6 py-3 rounded-xl font-medium transition-all duration-200 focus-ring"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompts Grid -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="prompts-grid">
+        {prompts.map((prompt) => (
+          <article 
+            class="prompt-item card card-hover-magenta group"
+            data-category={prompt.category}
+            data-featured={prompt.featured}
+            data-search-terms={`${prompt.title} ${prompt.description} ${prompt.tags.join(' ')}`}
+          >
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30">
+                {prompt.category}
+              </span>
+              {prompt.featured && (
+                <span class="text-sm px-2 py-1 rounded-full bg-cyan-400/20 text-cyan-400 border border-cyan-400/30">
+                  ⭐ Featured
+                </span>
+              )}
+            </div>
+            
+            <!-- Title -->
+            <h3 class="text-xl font-semibold mb-3 group-hover:text-pink-400 transition-colors">
+              {prompt.title}
+            </h3>
+            
+            <!-- Description -->
+            <p class="text-slate-400 leading-relaxed mb-4">
+              {prompt.description}
+            </p>
+            
+            <!-- Example -->
+            <div class="p-3 bg-slate-800/50 rounded-lg border border-slate-700 mb-4">
+              <p class="text-sm text-slate-300">
+                <span class="font-medium text-cyan-400">Example:</span> "{prompt.example}"
+              </p>
+            </div>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {prompt.tags.map((tag) => (
+                <span class="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <!-- Stats and Actions -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-700">
+              <div class="flex items-center space-x-6">
+                <!-- Heart Rating -->
+                <button 
+                  class="rating-btn heart-btn flex items-center space-x-1 text-sm transition-all duration-200 hover:scale-110"
+                  data-prompt-id={prompt.id}
+                  data-rating-type="heart"
+                >
+                  <span class="heart-icon text-lg">🤍</span>
+                  <span class="heart-count text-slate-400">{prompt.likes}</span>
+                </button>
+                
+                <!-- Fire Rating -->
+                <button 
+                  class="rating-btn fire-btn flex items-center space-x-1 text-sm transition-all duration-200 hover:scale-110"
+                  data-prompt-id={prompt.id}
+                  data-rating-type="fire"
+                >
+                  <span class="fire-icon text-lg">🔥</span>
+                  <span class="fire-count text-slate-400">{prompt.uses}</span>
+                </button>
+              </div>
+              
+              <div class="flex items-center space-x-2">
+                <button 
+                  class="btn btn-secondary btn-sm view-example-btn"
+                  data-example-image={prompt.exampleImage}
+                  data-example-title={prompt.title}
+                >
+                  👁️ Example
+                </button>
+                
+                <button 
+                  class="btn btn-secondary btn-sm copy-prompt-btn"
+                  data-prompt={prompt.prompt}
+                >
+                  Copy Prompt
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <div class="text-6xl mb-4 opacity-50">🔍</div>
+        <h3 class="text-xl font-semibold mb-2">No prompts found</h3>
+        <p class="text-slate-400 mb-4">Try adjusting your search or filter selection</p>
+        <button class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request Form Section -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="heading-2 mb-6">Request a Custom Prompt</h2>
+          <p class="text-xl text-slate-400">
+            Need a specific prompt that's not in our library? Let us know what you're looking for!
+          </p>
+        </div>
+        
+        <div class="card text-center space-y-6">
+          <h3 class="text-xl font-semibold">Custom Prompt Request</h3>
+          <p class="text-slate-400">
+            Need a specific prompt? Click below to send me an email with your request details.
+          </p>
+          
+          <a 
+            href="mailto:AskMajinn@gmail.com?subject=Custom%20Prompt%20Request&body=Hi%20Majinn%2C%0A%0AI%27d%20like%20to%20request%20a%20custom%20AI%20prompt%3A%0A%0A%2A%2ACONTACT%20INFO%2A%2A%0AName%3A%20%0AEmail%3A%20%0A%0A%2A%2APROMPT%20DETAILS%2A%2A%0ACategory%3A%20%5BArt%20%26%20Design%20%2F%20Writing%20%26%20Content%20%2F%20Marketing%20%26%20Sales%20%2F%20Video%20%26%20Audio%20%2F%20Social%20Media%20%2F%20Other%5D%0A%0APrompt%20Request%3A%20%0A%5BDescribe%20the%20type%20of%20prompt%20you%20need%2C%20what%20it%20should%20help%20you%20achieve%2C%20and%20any%20specific%20requirements...%5D%0A%0AUse%20Case%3A%20%0A%5BHow%20do%20you%20plan%20to%20use%20this%20prompt%3F%20This%20helps%20me%20create%20something%20more%20tailored%20to%20your%20needs.%5D%0A%0AThanks%21"
+            class="btn btn-primary text-lg px-8 py-4 inline-block"
+          >
+            📧 Request Custom Prompt
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+  }
+  
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: rgba(255, 0, 255, 0.1);
+    border-color: rgba(255, 0, 255, 0.3);
+    color: #ff00ff;
+  }
+  
+  .prompt-item {
+    transition: all 0.3s ease;
+  }
+  
+  .prompt-item.hidden {
+    display: none;
+  }
+  
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const promptItems = document.querySelectorAll('.prompt-item');
+    const emptyState = document.getElementById('empty-state');
+    const copyButtons = document.querySelectorAll('.copy-prompt-btn');
+    
+    let currentCategory = 'All';
+    let currentSearch = '';
+    
+    // Set initial active filter
+    const allBtn = document.querySelector('[data-category="All"]');
+    if (allBtn) allBtn.classList.add('active');
+    
+    // Filter functions
+    function filterPrompts() {
+      let visibleCount = 0;
+      
+      promptItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        const searchTerms = item.getAttribute('data-search-terms').toLowerCase();
+        
+        const categoryMatch = currentCategory === 'All' || itemCategory === currentCategory;
+        const searchMatch = currentSearch === '' || searchTerms.includes(currentSearch.toLowerCase());
+        
+        if (categoryMatch && searchMatch) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      
+      // Show/hide empty state
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    }
+    
+    // Search functionality
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        filterPrompts();
+      });
+    }
+    
+    // Category filtering
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentCategory = btn.getAttribute('data-category');
+        
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        filterPrompts();
+      });
+    });
+    
+    // Rating System
+    const ratingButtons = document.querySelectorAll('.rating-btn');
+    
+    // Load existing ratings from localStorage
+    function loadRatings() {
+      const savedRatings = JSON.parse(localStorage.getItem('promptRatings') || '{}');
+      
+      ratingButtons.forEach(btn => {
+        const promptId = btn.getAttribute('data-prompt-id');
+        const ratingType = btn.getAttribute('data-rating-type');
+        const userRatings = savedRatings[promptId] || {};
+        
+        if (userRatings[ratingType]) {
+          // User has already rated this prompt
+          btn.classList.add('rated');
+          if (ratingType === 'heart') {
+            btn.querySelector('.heart-icon').textContent = '❤️';
+            btn.querySelector('.heart-count').classList.remove('text-slate-400');
+            btn.querySelector('.heart-count').classList.add('text-red-400');
+          } else if (ratingType === 'fire') {
+            btn.querySelector('.fire-icon').textContent = '🔥';
+            btn.querySelector('.fire-count').classList.remove('text-slate-400');
+            btn.querySelector('.fire-count').classList.add('text-orange-400');
+          }
+        }
+      });
+    }
+    
+    // Handle rating clicks
+    ratingButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const promptId = this.getAttribute('data-prompt-id');
+        const ratingType = this.getAttribute('data-rating-type');
+        const isRated = this.classList.contains('rated');
+        
+        // Get current ratings from localStorage
+        const savedRatings = JSON.parse(localStorage.getItem('promptRatings') || '{}');
+        if (!savedRatings[promptId]) savedRatings[promptId] = {};
+        
+        // Get count element
+        const countElement = this.querySelector(`.${ratingType}-count`);
+        const iconElement = this.querySelector(`.${ratingType}-icon`);
+        let currentCount = parseInt(countElement.textContent);
+        
+        if (isRated) {
+          // Remove rating
+          savedRatings[promptId][ratingType] = false;
+          this.classList.remove('rated');
+          currentCount--;
+          
+          if (ratingType === 'heart') {
+            iconElement.textContent = '🤍';
+            countElement.classList.remove('text-red-400');
+            countElement.classList.add('text-slate-400');
+          } else if (ratingType === 'fire') {
+            iconElement.textContent = '🔥';
+            countElement.classList.remove('text-orange-400');
+            countElement.classList.add('text-slate-400');
+          }
+          
+          // Animation for removing
+          this.style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 150);
+          
+        } else {
+          // Add rating
+          savedRatings[promptId][ratingType] = true;
+          this.classList.add('rated');
+          currentCount++;
+          
+          if (ratingType === 'heart') {
+            iconElement.textContent = '❤️';
+            countElement.classList.remove('text-slate-400');
+            countElement.classList.add('text-red-400');
+          } else if (ratingType === 'fire') {
+            iconElement.textContent = '🔥';
+            countElement.classList.remove('text-slate-400');
+            countElement.classList.add('text-orange-400');
+          }
+          
+          // Animation for adding
+          this.style.transform = 'scale(1.2)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 150);
+        }
+        
+        // Update count
+        countElement.textContent = currentCount;
+        
+        // Save to localStorage
+        localStorage.setItem('promptRatings', JSON.stringify(savedRatings));
+      });
+    });
+    
+    // Load ratings on page load
+    loadRatings();
+    
+    // Copy prompt functionality
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const prompt = btn.getAttribute('data-prompt');
+        
+        try {
+          await navigator.clipboard.writeText(prompt);
+          const originalText = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.classList.add('bg-green-500');
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('bg-green-500');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy prompt:', err);
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = prompt;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          
+          btn.textContent = 'Copied!';
+          setTimeout(() => {
+            btn.textContent = 'Copy Prompt';
+          }, 2000);
+        }
+      });
+    });
+    
+    // View example functionality
+    const exampleButtons = document.querySelectorAll('.view-example-btn');
+    
+    exampleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const exampleImage = btn.getAttribute('data-example-image');
+        const exampleTitle = btn.getAttribute('data-example-title');
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4';
+        modal.innerHTML = `
+          <div class="bg-slate-900 rounded-lg border border-orange-500/30 max-w-4xl w-full max-h-[90vh] overflow-auto">
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-gradient">${exampleTitle} - Example</h3>
+                <button class="close-modal text-2xl hover:text-orange-400 transition-colors">&times;</button>
+              </div>
+              <img src="${exampleImage}" alt="${exampleTitle} Example" class="w-full rounded-lg border border-slate-700" />
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Close modal functionality
+        const closeModal = () => {
+          document.body.removeChild(modal);
+        };
+        
+        modal.querySelector('.close-modal').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+        
+        // Close on Escape key
+        const handleEscape = (e) => {
+          if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', handleEscape);
+          }
+        };
+        document.addEventListener('keydown', handleEscape);
+      });
+    });
+    
+    // Global clear filters function
+    window.clearFilters = function() {
+      currentCategory = 'All';
+      currentSearch = '';
+      
+      if (searchInput) searchInput.value = '';
+      
+      filterButtons.forEach(b => b.classList.remove('active'));
+      const allBtn = document.querySelector('[data-category="All"]');
+      if (allBtn) allBtn.classList.add('active');
+      
+      filterPrompts();
+    };
+  });
+</script>

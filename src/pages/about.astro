@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About — AskMajinn"
+  description="Meet Majinn - Creative Director, AI Prompt Engineer, and digital innovator. Discover the story behind AskMajinn and the mission to blend creativity with technology."
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="space-y-8">
+          <h1 class="heading-1">
+            Meet <span class="text-gradient">Majinn</span>
+          </h1>
+          <p class="text-xl text-slate-400 leading-relaxed">
+            Creative Director, AI Prompt Engineer, and digital innovator on a mission to 
+            blend creativity with cutting-edge technology.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/contact" class="btn btn-primary">Let's Collaborate</a>
+            <a href="/portfolio" class="btn btn-secondary">View My Work</a>
+          </div>
+        </div>
+        
+        <!-- Avatar/Image -->
+        <div class="text-center lg:text-right">
+          <div class="inline-block relative">
+            <!-- Futuristic Avatar Placeholder -->
+            <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-cyan-500/20 to-pink-500/20 border border-cyan-400/30 flex items-center justify-center text-8xl backdrop-blur-sm">
+              🤖
+            </div>
+            <!-- Floating Elements -->
+            <div class="absolute -top-4 -right-4 w-16 h-16 bg-cyan-400/20 rounded-full animate-pulse"></div>
+            <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-pink-500/20 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto space-y-12">
+        <!-- Mission -->
+        <div class="text-center">
+          <h2 class="heading-2 mb-6">The Mission</h2>
+          <p class="text-xl text-slate-400 leading-relaxed">
+            To democratize creativity through AI and make cutting-edge design and content creation 
+            accessible to everyone. I believe the future belongs to those who can blend human 
+            creativity with artificial intelligence.
+          </p>
+        </div>
+        
+        <!-- Story -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <h3 class="heading-3 text-cyan-400">The Journey</h3>
+            <p class="text-slate-400 leading-relaxed">
+              What started as a fascination with design and technology has evolved into a 
+              passion for creating digital experiences that inspire and empower others.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              From building my first website to developing AI prompts that help creators 
+              worldwide, every project is an opportunity to push boundaries and explore 
+              what's possible when creativity meets technology.
+            </p>
+          </div>
+          
+          <div class="card card-hover-cyan">
+            <h4 class="text-lg font-semibold mb-4 text-pink-400">Core Values</h4>
+            <ul class="space-y-3 text-slate-400">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                Innovation through experimentation
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                Accessibility and inclusivity in design
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                Quality over quantity
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                Continuous learning and growth
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">Areas of Expertise</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          A multidisciplinary approach combining design, technology, and AI innovation
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Design & Branding -->
+        <div class="card card-hover-cyan group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">🎨</div>
+          <h3 class="text-xl font-semibold mb-4">Design & Branding</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• Visual identity design</li>
+            <li>• UI/UX design systems</li>
+            <li>• Brand strategy & guidelines</li>
+            <li>• Typography & color theory</li>
+            <li>• Digital illustration</li>
+          </ul>
+        </div>
+        
+        <!-- Web Development -->
+        <div class="card card-hover-cyan group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">💻</div>
+          <h3 class="text-xl font-semibold mb-4">Web Development</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• Modern web frameworks</li>
+            <li>• Performance optimization</li>
+            <li>• Responsive design</li>
+            <li>• JAMstack architecture</li>
+            <li>• Progressive web apps</li>
+          </ul>
+        </div>
+        
+        <!-- AI & Automation -->
+        <div class="card card-hover-magenta group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">🤖</div>
+          <h3 class="text-xl font-semibold mb-4">AI & Automation</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• AI prompt engineering</li>
+            <li>• Content automation</li>
+            <li>• Workflow optimization</li>
+            <li>• Machine learning integration</li>
+            <li>• AI-assisted design</li>
+          </ul>
+        </div>
+        
+        <!-- Content Strategy -->
+        <div class="card card-hover-magenta group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">✍️</div>
+          <h3 class="text-xl font-semibold mb-4">Content Strategy</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• Content planning & strategy</li>
+            <li>• Social media campaigns</li>
+            <li>• SEO optimization</li>
+            <li>• Copywriting & messaging</li>
+            <li>• Content automation</li>
+          </ul>
+        </div>
+        
+        <!-- Digital Marketing -->
+        <div class="card card-hover-cyan group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">📈</div>
+          <h3 class="text-xl font-semibold mb-4">Digital Marketing</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• Growth strategy</li>
+            <li>• Conversion optimization</li>
+            <li>• Analytics & insights</li>
+            <li>• Email marketing</li>
+            <li>• Performance tracking</li>
+          </ul>
+        </div>
+        
+        <!-- Innovation -->
+        <div class="card card-hover-magenta group">
+          <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-200">🚀</div>
+          <h3 class="text-xl font-semibold mb-4">Innovation</h3>
+          <ul class="text-slate-400 space-y-2 text-sm">
+            <li>• Emerging technology research</li>
+            <li>• Prototype development</li>
+            <li>• Future-proofing strategies</li>
+            <li>• Tech trend analysis</li>
+            <li>• Digital transformation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="heading-2 mb-6">Design Philosophy</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Purpose-Driven</h3>
+            <p class="text-slate-400">
+              Every design decision serves a purpose. Form follows function, 
+              but never at the expense of aesthetic appeal.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl">🔄</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Iterative Process</h3>
+            <p class="text-slate-400">
+              Great design emerges through continuous refinement. 
+              Test, learn, adapt, and improve constantly.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl">🌍</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Human-Centered</h3>
+            <p class="text-slate-400">
+              Technology should enhance human experience, not complicate it. 
+              Accessibility and usability are non-negotiable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">By the Numbers</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">10+</div>
+          <p class="text-slate-400">Years Creating</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">100+</div>
+          <p class="text-slate-400">Projects Completed</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">500+</div>
+          <p class="text-slate-400">Prompts Created</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">50K+</div>
+          <p class="text-slate-400">Lives Impacted</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Touch -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-2 mb-8">Beyond the Work</h2>
+        <div class="card bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border-cyan-400/30">
+          <p class="text-xl text-slate-300 leading-relaxed mb-6">
+            When I'm not crafting digital experiences, you'll find me exploring the latest AI tools, 
+            experimenting with new design trends, or sharing knowledge with the creative community.
+          </p>
+          <p class="text-lg text-slate-400 leading-relaxed">
+            I believe that the best work comes from staying curious, embracing challenges, 
+            and never stopping the pursuit of creative excellence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-r from-slate-900 to-slate-800">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="heading-2 mb-6">Let's Create Together</h2>
+        <p class="text-xl text-slate-300 mb-8">
+          Ready to bring your vision to life? Let's combine creativity, technology, 
+          and innovation to create something extraordinary.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn btn-primary text-lg px-8 py-4">
+            Start a Project
+          </a>
+          <a href="/connect" class="btn btn-secondary text-lg px-8 py-4">
+            Connect on Social
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

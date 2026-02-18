@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Learn — AskMajinn"
+  description="Learn new skills and techniques in design, AI tools, development, and creative business. Coming soon!"
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom text-center">
+      <h1 class="heading-1 mb-6">Learn</h1>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
+        Master new skills in design, AI tools, development, and creative business strategies.
+      </p>
+      
+      <!-- Coming Soon Notice -->
+      <div class="max-w-2xl mx-auto">
+        <div class="card bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-400/30 text-center">
+          <div class="text-6xl mb-6">🚧</div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gradient mb-4">COMING SOON</h2>
+          <h3 class="text-2xl md:text-3xl font-semibold text-orange-400 mb-6">UNDER CONSTRUCTION</h3>
+          <p class="text-lg text-slate-300 leading-relaxed">
+            We're building something amazing! This learning hub will feature tutorials, 
+            courses, and resources to help you master creative skills and AI tools. 
+            Check back soon as we continue developing this section.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Future Features Preview -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="heading-2 mb-6">What's Coming</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          Get a preview of what you'll be able to learn once this section launches
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card text-center opacity-50">
+          <div class="text-4xl mb-4">🎨</div>
+          <h3 class="text-xl font-semibold mb-2">Design Mastery</h3>
+          <p class="text-slate-400">UI/UX principles, visual design, and branding techniques</p>
+        </div>
+        
+        <div class="card text-center opacity-50">
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="text-xl font-semibold mb-2">AI Tools</h3>
+          <p class="text-slate-400">Master AI for content creation, design, and automation</p>
+        </div>
+        
+        <div class="card text-center opacity-50">
+          <div class="text-4xl mb-4">💻</div>
+          <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+          <p class="text-slate-400">Modern frameworks, performance, and best practices</p>
+
+
+<style>
+  .filter-btn.active {
+    @apply bg-cyan-400 text-slate-900 border-cyan-400;
+  }
+  
+  .filter-btn:not(.active) {
+    @apply border-slate-600 text-slate-400 hover:border-cyan-400 hover:text-cyan-400;
+  }
+  
+  .content-item {
+    transition: all 0.3s ease;
+  }
+</style>

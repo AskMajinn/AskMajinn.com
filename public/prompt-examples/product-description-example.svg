@@ -1,0 +1,12 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1a1a1a" stroke="#ff8c00" stroke-width="2"/>
+  <text x="300" y="80" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ff8c00" text-anchor="middle">Product Description Example</text>
+  <text x="300" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">🎧 Premium Wireless Headphones</text>
+  <text x="300" y="150" font-family="Arial, sans-serif" font-size="12" fill="#ccc" text-anchor="middle">Immerse yourself in crystal-clear audio while blocking</text>
+  <text x="300" y="170" font-family="Arial, sans-serif" font-size="12" fill="#ccc" text-anchor="middle">out the world. Premium noise-cancelling technology</text>
+  <text x="300" y="190" font-family="Arial, sans-serif" font-size="12" fill="#ccc" text-anchor="middle">meets all-day comfort for work, travel, or relaxation.</text>
+  <text x="300" y="230" font-family="Arial, sans-serif" font-size="12" fill="#00ff88" text-anchor="middle">✓ 30-hour battery ✓ Active noise cancelling</text>
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="12" fill="#00ff88" text-anchor="middle">✓ Premium materials ✓ Quick charge</text>
+  <text x="300" y="290" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ff8c00" text-anchor="middle">From $199 - Limited Time Offer!</text>
+  <text x="300" y="340" font-family="Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">Replace: product-description-example.svg</text>
+</svg>

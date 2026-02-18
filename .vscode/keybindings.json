@@ -1,0 +1,4 @@
+[
+  { "key": "cmd+alt+p", "command": "livePreview.startPreview", "when": "editorTextFocus" },
+  { "key": "cmd+alt+o", "command": "livePreview.showPreview",  "when": "editorTextFocus" }
+]

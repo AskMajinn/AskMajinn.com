@@ -1,0 +1,6 @@
+{
+  "livePreview.externalServer.httpURL": "http://localhost:4324",
+  "livePreview.defaultPreviewPath": "http://localhost:4324",
+  "livePreview.openPreviewTarget": "Embedded Preview",
+  "livePreview.server.keepAlive": true
+}

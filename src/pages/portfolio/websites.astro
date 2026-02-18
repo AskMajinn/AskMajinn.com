@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const websites = [
+  {
+    id: 1,
+    name: "Yours Truly Ballroom",
+    url: "https://yourstrulyballroom.com",
+    description: "A stunning premium event venue website for Yours Truly Ballroom in Orlando, Florida. This elegant 5000 sq ft ballroom venue specializes in weddings, quinceañeras, and milestone celebrations.",
+    features: [
+      "Comprehensive one-stop-shop event packages",
+      "Interactive 3D floor plans and video tours", 
+      "Elegant photo galleries showcasing events",
+      "Integrated booking and consultation system",
+      "Mobile-responsive design with custom branding"
+    ],
+    services: "Wedding Venue, Event Planning, Catering Coordination, Photography Services",
+    tech: ["Custom Design", "Responsive Layout", "Gallery Integration", "Contact Forms"],
+    image: "/portfolio/websites-category.svg",
+    category: "Event Venue",
+    year: "2024"
+  },
+  {
+    id: 2,
+    name: "The Social Chapel", 
+    url: "https://thesocialchapel.com",
+    description: "A beautiful rustic-glam event venue website for The Social Chapel in Jacksonville, Florida. This versatile 2000 sq ft venue offers both indoor and outdoor ceremony options for intimate celebrations.",
+    features: [
+      "Rustic-glam aesthetic with elegant design",
+      "Outdoor ceremony showcase and indoor reception areas",
+      "Comprehensive vendor partnerships display",
+      "Client testimonials and review integration",
+      "Customizable event package information"
+    ],
+    services: "Wedding Venue, Quinceañera Celebrations, Baby Showers, Birthday Parties, First Communions",
+    tech: ["Modern Web Design", "Image Optimization", "Mobile-First Approach", "SEO Optimization"],
+    image: "/portfolio/websites-category.svg",
+    category: "Event Venue",
+    year: "2024"
+  },
+  {
+    id: 3,
+    name: "Island Tryst",
+    url: "https://islandtryst.com", 
+    description: "An luxurious travel and vacation experience website for Island Tryst in the U.S. Virgin Islands. This premium service combines three specialized companies: The Classy Concierge, FantaSEA Island Tours, and The Talented Chef.",
+    features: [
+      "Multi-service integration showcasing three distinct companies",
+      "Adventure booking system for jeep and boat tours",
+      "Culinary experience planning and chef services",
+      "Concierge service coordination and luxury planning",
+      "Interactive booking system with email integration"
+    ],
+    services: "Luxury Travel Planning, Island Tours, Private Chef Services, Concierge Services",
+    tech: ["Advanced Booking System", "Multi-Service Integration", "Custom Animations", "Email Marketing"],
+    image: "/portfolio/websites-category.svg", 
+    category: "Travel & Tourism",
+    year: "2023"
+  }
+];
+---
+
+<Layout 
+  title="Websites Created — AskMajinn Portfolio"
+  description="Explore the custom websites I've designed and developed. From event venues to luxury travel experiences, see how modern web design drives business results."
+>
+  <!-- Hero Section -->
+  <section class="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="container-custom text-center">
+      <h1 class="heading-1 mb-6">
+        <span class="text-gradient">Websites Created</span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Custom-designed websites that combine stunning visuals with powerful functionality. 
+        Each project is tailored to drive engagement, conversions, and business growth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Websites Grid -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid gap-12">
+        {websites.map((website, index) => (
+          <article class="card card-hover-cyan group">
+            <!-- Website Details -->
+            <div class="space-y-6">
+              <!-- Header -->
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm px-3 py-1 rounded-full bg-cyan-400/20 text-cyan-400 border border-cyan-400/30">
+                    {website.category}
+                  </span>
+                  <span class="text-sm text-slate-400">{website.year}</span>
+                </div>
+                
+                <h2 class="text-3xl font-bold group-hover:text-cyan-400 transition-colors">
+                  {website.name}
+                </h2>
+              </div>
+
+              <!-- Description -->
+              <p class="text-slate-300 leading-relaxed text-lg">
+                {website.description}
+              </p>
+
+              <!-- Services -->
+              <div>
+                <h3 class="text-lg font-semibold text-orange-400 mb-2">Services Provided</h3>
+                <p class="text-slate-400">{website.services}</p>
+              </div>
+
+              <!-- Key Features -->
+              <div>
+                <h3 class="text-lg font-semibold text-orange-400 mb-3">Key Features</h3>
+                <ul class="grid md:grid-cols-2 gap-2">
+                  {website.features.map((feature) => (
+                    <li class="flex items-start space-x-2 text-slate-300">
+                      <span class="text-green-400 mt-1">✓</span>
+                      <span class="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Technologies -->
+              <div>
+                <h3 class="text-lg font-semibold text-orange-400 mb-3">Technologies Used</h3>
+                <div class="flex flex-wrap gap-2">
+                  {website.tech.map((tech) => (
+                    <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Visit Button -->
+              <div class="pt-4">
+                <a 
+                  href={website.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary text-lg px-8 py-4 inline-flex items-center group/btn"
+                >
+                  🌐 Visit Live Site
+                  <svg class="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-padding bg-slate-900/50">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-6">Project Results</h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          Every website is built with performance, user experience, and business goals in mind
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">100%</div>
+          <p class="text-slate-400">Mobile Responsive</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">3+</div>
+          <p class="text-slate-400">Websites Launched</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">Fast</div>
+          <p class="text-slate-400">Loading Speeds</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-gradient mb-2">SEO</div>
+          <p class="text-slate-400">Optimized</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="card card-hover-cyan text-center max-w-3xl mx-auto bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border-cyan-400/30">
+        <h2 class="heading-2 mb-6">Ready for Your Custom Website?</h2>
+        <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          Let's create a website that not only looks amazing but drives real business results. 
+          From concept to launch, I'll handle every detail.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn btn-primary text-lg px-8 py-4">
+            Start Your Project
+          </a>
+          <a href="/portfolio" class="btn btn-secondary text-lg px-8 py-4">
+            View All Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .card {
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+  }
+</style>

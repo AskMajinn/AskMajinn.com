@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Astro: dev",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Preview: open",
+      "type": "shell",
+      "command": "echo Opening Live Preview… && sleep 1",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dev + Preview",
+      "dependsOrder": "parallel",
+      "dependsOn": ["Astro: dev", "Preview: open"]
+    }
+  ]
+}
