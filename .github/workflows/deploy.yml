@@ -30,13 +30,13 @@ jobs:
           test -f dist/index.html
           ls -la dist
 
-      - name: Deploy to cPanel via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy to cPanel via SFTP (SSH)
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.SFTP_SERVER }}
+          host: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          protocol: ftps
-          local-dir: dist/
-          server-dir: ${{ secrets.SFTP_REMOTE_PATH }}
+          source: "dist/*"
+          target: "${{ secrets.SFTP_REMOTE_PATH }}"
+          strip_components: 1
