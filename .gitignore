@@ -25,3 +25,10 @@ pnpm-debug.log*
 
 # deployment test file
 deploy-test.txt
+
+# large media files (prevent GitHub 50MB errors)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
