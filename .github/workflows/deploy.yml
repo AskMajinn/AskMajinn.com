@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: build-and-deploy
 
 on:
   push:
@@ -10,39 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
 
-      # Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Build Astro site
       - name: Build Astro site
         run: npm run build
 
-      # Verify build output exists
       - name: Verify build output
         run: |
-          echo "Checking dist folder..."
-          ls -la dist
           test -f dist/index.html
+          ls -la dist
 
-      # Deploy via FTPS
       - name: Deploy to cPanel via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
+          server: ${{ secrets.FTPS_SERVER }}
+          username: ${{ secrets.FTPS_USERNAME }}
+          password: ${{ secrets.FTPS_PASSWORD }}
           protocol: ftps
-          port: 21
+          port: ${{ secrets.FTPS_PORT }}
           local-dir: dist/
-          server-dir: ${{ secrets.SFTP_REMOTE_PATH }}
+          server-dir: public_html/askmajinn.com/
