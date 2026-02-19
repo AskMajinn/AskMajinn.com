@@ -19,7 +19,7 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install
+      - name: Install dependencies
         run: npm ci
 
       - name: Build (Astro)
@@ -29,12 +29,15 @@ jobs:
         run: |
           test -d dist
           test -f dist/index.html
-                - name: Debug FTP server secret (safe)
+
+      # Safe debug step to confirm FTP_SERVER is being read
+      - name: Debug FTP_SERVER secret
         run: |
           echo "FTP_SERVER length: ${#FTP_SERVER}"
           echo "FTP_SERVER tail: ${FTP_SERVER: -12}"
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
+
       - name: Deploy dist to server (FTP) - dry run
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
