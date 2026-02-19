@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,28 +25,25 @@ jobs:
       - name: Build (Astro)
         run: npm run build
 
-      - name: Verify dist output
-        shell: bash
+      - name: Verify dist exists
         run: |
-          echo "dist root:"
-          ls -la dist
-          echo "index exists?"
           test -f dist/index.html
+          echo "dist/index.html found"
 
       - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftps
           port: 21
 
-          # ✅ this matches your build output
+          # Upload the CONTENTS of dist/
           local-dir: dist/
 
-          # ✅ this is the real docroot for that addon domain folder
-          server-dir: public_html/askmajinn.com/
+          # IMPORTANT: your FTP root is already the site folder
+          server-dir: ./
 
           dangerous-clean-slate: false
 
