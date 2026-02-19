@@ -30,22 +30,14 @@ jobs:
           test -d dist
           test -f dist/index.html
 
-      # This helps confirm DNS resolution on the GitHub runner
-      # (The hostname will be masked, but the command will still succeed/fail)
-      - name: DNS check (FTP host)
-        run: |
-          echo "Checking DNS resolution..."
-          getent hosts "${{ secrets.FTP_SERVER }}" || true
-          nslookup "${{ secrets.FTP_SERVER }}" || true
-
       - name: Deploy dist to server (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ secrets.FTP_PROTOCOL }}   # set this secret to: ftps
-          port: ${{ secrets.FTP_PORT }}           # set this secret to: 21
+          protocol: ftps
+          port: 21
           local-dir: dist/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           dangerous-clean-slate: false
