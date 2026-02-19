@@ -25,14 +25,13 @@ jobs:
       - name: Build (Astro)
         run: npm run build
 
-      - name: Verify build output
+      - name: Verify dist output
         shell: bash
         run: |
-          echo "Listing dist/..."
-          ls -la dist || true
-          echo "Looking for expected deploy root..."
-          ls -la dist/public_html/askmajinn.com || true
-          test -f dist/public_html/askmajinn.com/index.html
+          echo "dist root:"
+          ls -la dist
+          echo "index exists?"
+          test -f dist/index.html
 
       - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -43,10 +42,10 @@ jobs:
           protocol: ftps
           port: 21
 
-          # IMPORTANT: deploy ONLY the contents that belong in your site root
-          local-dir: dist/public_html/askmajinn.com/
+          # ✅ this matches your build output
+          local-dir: dist/
 
-          # IMPORTANT: your real doc root for the addon/subdomain folder
+          # ✅ this is the real docroot for that addon domain folder
           server-dir: public_html/askmajinn.com/
 
           dangerous-clean-slate: false
