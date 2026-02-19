@@ -19,12 +19,8 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install Dependencies
+      - name: Install
         run: npm ci
-
-      # ✅ THIS IS THE FIX (kills leftover dist/public_html junk)
-      - name: Clean dist
-        run: rm -rf dist
 
       - name: Build (Astro)
         run: npm run build
@@ -33,8 +29,14 @@ jobs:
         run: |
           echo "=== dist root ==="
           ls -la dist
-          echo "=== dist folders (depth 2) ==="
-          find dist -maxdepth 2 -type d -print
+          if [ -d "dist/public_html" ]; then
+            echo "ERROR: dist/public_html exists. Your build output is wrong."
+            exit 1
+          fi
+          if [ ! -f "dist/index.html" ]; then
+            echo "ERROR: dist/index.html not found. Build output is not in dist root."
+            exit 1
+          fi
 
       - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -43,22 +45,14 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          port: 21
-
-          # Upload ONLY what Astro builds
+          port: ${{ secrets.FTP_PORT }}
           local-dir: dist/
-
-          # Your cPanel document root for askmajinn.com
+          # FORCE the correct destination (this prevents the double-public_html problem)
           server-dir: public_html/askmajinn.com/
-
-          # Keep this true so server mirrors your dist output
-          dangerous-clean-slate: true
-
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
-            **/.github*
+            **/.github/**
             **/node_modules/**
             **/.vscode/**
-            **/.env*
-            **/README*
-            **/.DS_Store
+            **/*.DS_Store
