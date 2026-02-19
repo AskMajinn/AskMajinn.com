@@ -30,7 +30,7 @@ jobs:
           echo "=== dist root ==="
           ls -la dist
           if [ -d "dist/public_html" ]; then
-            echo "ERROR: dist/public_html exists. Your build output is wrong."
+            echo "ERROR: dist/public_html exists. Build output is wrong."
             exit 1
           fi
           if [ ! -f "dist/index.html" ]; then
@@ -47,8 +47,8 @@ jobs:
           protocol: ftps
           port: ${{ secrets.FTP_PORT }}
           local-dir: dist/
-          # FORCE the correct destination (this prevents the double-public_html problem)
-          server-dir: public_html/askmajinn.com/
+          # IMPORTANT: your FTP user is already rooted inside public_html/askmajinn.com
+          server-dir: ./
           dangerous-clean-slate: false
           exclude: |
             **/.git*
