@@ -22,12 +22,19 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      # ✅ THIS IS THE FIX (kills leftover dist/public_html junk)
+      - name: Clean dist
+        run: rm -rf dist
+
       - name: Build (Astro)
         run: npm run build
 
-      - name: Verify dist exists
+      - name: Verify dist structure (must NOT include public_html)
         run: |
+          echo "=== dist root ==="
           ls -la dist
+          echo "=== dist folders (depth 2) ==="
+          find dist -maxdepth 2 -type d -print
 
       - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -38,12 +45,13 @@ jobs:
           protocol: ftps
           port: 21
 
-          # 🚨 THIS IS THE IMPORTANT FIX
+          # Upload ONLY what Astro builds
           local-dir: dist/
 
-          # 🚨 This matches your cPanel Document Root
+          # Your cPanel document root for askmajinn.com
           server-dir: public_html/askmajinn.com/
 
+          # Keep this true so server mirrors your dist output
           dangerous-clean-slate: true
 
           exclude: |
