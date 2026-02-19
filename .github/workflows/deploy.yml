@@ -19,18 +19,22 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Install
         run: npm ci
 
       - name: Build (Astro)
         run: npm run build
 
       - name: Verify build output
+        shell: bash
         run: |
-          test -d dist
-          test -f dist/index.html
+          echo "Listing dist/..."
+          ls -la dist || true
+          echo "Looking for expected deploy root..."
+          ls -la dist/public_html/askmajinn.com || true
+          test -f dist/public_html/askmajinn.com/index.html
 
-      - name: Deploy dist to server (FTPS)
+      - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -38,13 +42,20 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          local-dir: dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+
+          # IMPORTANT: deploy ONLY the contents that belong in your site root
+          local-dir: dist/public_html/askmajinn.com/
+
+          # IMPORTANT: your real doc root for the addon/subdomain folder
+          server-dir: public_html/askmajinn.com/
+
           dangerous-clean-slate: false
+
           exclude: |
             **/.git*
             **/.github/**
             **/node_modules/**
-            .env
-            .env.*
-            README*
+            **/.vscode/**
+            **/.env*
+            **/README*
+            **/.DS_Store
