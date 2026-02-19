@@ -2,7 +2,8 @@ name: Deploy Live Site (FTPS)
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -10,48 +11,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: 20
+          cache: npm
 
-      - name: Install
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build (Astro)
+      - name: Build Astro Site
         run: npm run build
 
       - name: Verify dist exists
         run: |
-          test -f dist/index.html
-          echo "dist/index.html found"
+          if [ ! -d "dist" ]; then
+            echo "dist folder not found!"
+            exit 1
+          fi
+          ls -la dist
 
       - name: Deploy to GoDaddy (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-
-          # Upload the CONTENTS of dist/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          port: ${{ secrets.FTP_PORT }}
           local-dir: dist/
-
-          # IMPORTANT: your FTP root is already the site folder
-          server-dir: ./
-
+          server-dir: public_html/askmajinn.com/
           dangerous-clean-slate: false
-
           exclude: |
             **/.git*
-            **/.github/**
+            **/.github*
             **/node_modules/**
-            **/.vscode/**
-            **/.env*
-            **/README*
             **/.DS_Store
+
+      - name: Deployment Complete
+        run: echo "Deployment finished."
